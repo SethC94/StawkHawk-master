@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onClick(String symbol) {
+        String contentDescription = "Select " + symbol;
+        TextView tv = (TextView) findViewById(R.id.symbol);
+        tv.setContentDescription(contentDescription);
         Intent intent = new Intent(this, DetailActivity.class);
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeBasic();
         ActivityCompat.startActivity(this, intent, optionsCompat.toBundle());
@@ -155,6 +158,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         if (data.getCount() != 0) {
             error.setVisibility(View.GONE);
+
+//            getWindow().getDecorView().setContentDescription(
+//                    String.format(getString(R.string.change_units)));
         }
         adapter.setCursor(data);
     }
@@ -170,8 +176,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private void setDisplayModeMenuItemIcon(MenuItem item) {
         if (PrefUtils.getDisplayMode(this)
                 .equals(getString(R.string.pref_display_mode_absolute_key))) {
+            item.setTitle(R.string.preference_change_absolute);
             item.setIcon(R.drawable.ic_percentage);
         } else {
+            item.setTitle(R.string.preference_change_percent);
             item.setIcon(R.drawable.ic_dollar);
         }
     }
