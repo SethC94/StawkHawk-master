@@ -4,6 +4,10 @@
     <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
     <string name="intent_extra_symbol" translatable="false">symbol</string>
     <string name="marker_placeholder" translatable="false">0000.00</string>
+    <string name="empty_stock_list">Stock information is not available.</string>
+    <string name="widget_description">Stock hawk widget</string>
+    <string name="widget_label">Stock Details</string>
+
     <!-- Dialog Strings -->
     <string name="dialog_title" translatable="true">Add Stock</string>
     <string name="dialog_hint" translatable="true">Symbol (e.g. GOOG)</string>
