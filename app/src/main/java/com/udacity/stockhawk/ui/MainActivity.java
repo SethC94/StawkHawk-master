@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         TextView tv = (TextView) findViewById(R.id.symbol);
         tv.setContentDescription(contentDescription);
         Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(getString(R.string.intent_extra_symbol),symbol);
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeBasic();
         ActivityCompat.startActivity(this, intent, optionsCompat.toBundle());
 
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -72,6 +72,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         stockRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         swipeRefreshLayout.setOnRefreshListener(this);
+        if (savedInstanceState == null) {
+            QuoteSyncJob.initialize(this);
+            swipeRefreshLayout.setRefreshing(true);
+        }
         swipeRefreshLayout.setRefreshing(true);
         onRefresh();
 
